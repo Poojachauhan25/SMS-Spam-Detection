@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check for Spam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arima&family=Delius&family=Inter:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Arima", serif;
+            background-color: #4d7490;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            box-shadow: 16px 16px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 600px;
+        }
+        h2 {
+            color: black;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        label {
+            color: #4a5568;
+            font-size: 16px;
+        }
+        textarea {
+            width: 570px;
+            height: 100px;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #e2e8f0;
+            font-size: 14px;
+            resize: vertical;
+        }
+        button {
+            background-color: #3182ce;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            border: 1px solid black;
+            background-color: #2b6cb0;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .spam {
+            background-color: #fce8e6;
+            color: #e53e3e;
+        }
+        .not-spam {
+            background-color: #e6fffa;
+            color: #38b2ac;
+        }
+        .back-btn {
+            display: block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .back-btn:hover {
+            /* border: solid black; */
+            background-color: rgb(37, 37, 37);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Check if your message is Spam!</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="text">Enter Your Message :</label>
+            <textarea name="text" id="text" placeholder="Type your message here..."></textarea>
+            <button type="submit">Check Spam</button>
+        </form>
+
+        {% if message %}
+        <div class="result {% if message.is_spam %}spam{% else %}not-spam{% endif %}">
+            <p class="text-center">
+                {% if message.is_spam %}
+                    This message is identified as spam! 🚨 
+                {% else %}
+                    This message is not spam. ✅ 
+                {% endif %}
+            </p>
+        </div>
+        {% endif %}
+
+        <!-- Back to Home Button -->
+        <a href="/" class="back-btn">Back to Home</a>
+    </div>
+
+</body>
+</html>
