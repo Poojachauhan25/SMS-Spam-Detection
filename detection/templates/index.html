@@ -19,34 +19,91 @@
             height: 100vh;
         }
         .container {
-            text-align: center;
-            background-color: white;
-            padding: 40px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-            border-radius: 8px;
-        }
-        .container h1 {
-            color: black;
-            font-size: 36px;
-        }
-        .container p {
-            color: #4a5568;
-            font-size: 18px;
-        }
-        .btn {
-            
-            background-color: #3182ce;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            font-size: 18px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .btn:hover {
-            border: 2px solid black;
-            background-color: #2b6cb0;
-        }
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 50px 40px;
+      text-align: center;
+      animation: fadeZoom 1s ease forwards;
+      transform: scale(0.9);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    @keyframes fadeZoom {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .container h1 {
+      font-size: 2.8rem;
+      color: #0b2c47;
+      margin-bottom: 15px;
+      animation: floatUp 1s ease 0.5s forwards;
+      opacity: 0;
+    }
+
+    .container p {
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 30px;
+      animation: floatUp 1s ease 0.7s forwards;
+      opacity: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, #2b6cb0, #0b2c47);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: all 0.5s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #2b6cb0, #0b2c47);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+    }
         @media (max-width: 500px) {
             body {
                 padding: 30px;

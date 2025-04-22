@@ -19,86 +19,141 @@
             min-height: 100vh;
         }
         .container {
-            background-color: white;
-            padding: 30px;
-            box-shadow: 16px 16px 20px rgba(0, 0, 0, 0.5);
-            border-radius: 8px;
-            width: 100%;
-            max-width: 600px;
-        }
-        h2 {
-            color: black;
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-        label {
-            color: #4a5568;
-            font-size: 16px;
-        }
-        textarea {
-            width: 570px;
-            height: 100px;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: 1px solid #e2e8f0;
-            font-size: 14px;
-            resize: vertical;
-        }
-        button {
-            background-color: #3182ce;
-            color: white;
-            padding: 12px 24px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            border: 1px solid black;
-            background-color: #2b6cb0;
-        }
-        .result {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 5px;
-        }
-        .spam {
-            background-color: #fce8e6;
-            color: #e53e3e;
-        }
-        .not-spam {
-            background-color: #e6fffa;
-            color: #38b2ac;
-        }
-        .back-btn {
-            display: block;
-            margin-top: 30px;
-            padding: 10px 20px;
-            background-color: black;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            text-align: center;
-        }
-        .back-btn:hover {
-            /* border: solid black; */
-            background-color: rgb(37, 37, 37);
-        }
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      border-radius: 20px;
+      padding: 40px 30px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
 
-        @media (max-width: 500px) {
-            body {
-                padding: 50px;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #0d3c61;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    textarea {
+      width: 90%;
+      height: 120px;
+      padding: 15px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      background: #f9f9f9;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
+      resize: none;
+      transition: all 0.3s ease;
+    }
+
+    textarea:focus {
+      outline: 2px solid #0d3c61;
+      background: #ffffff;
+      box-shadow: 0 0 8px rgba(33, 150, 243, 0.7);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #0072ff, #0d3c61);
+      color: white;
+      text-align: left;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 114, 255, 0.3);
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #0d3c61, #0072ff);
+    }
+
+    .result {
+      margin-top: 30px;
+      /* padding: 15px; */
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      animation: slideIn 0.6s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .spam {
+      background: #ffe6e6;
+      color: #d32f2f;
+      border: 1px solid #d32f2f;
+    }
+
+    .not-spam {
+      background: #e0f7e9;
+      color: #388e3c;
+      border: 1px solid #388e3c;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 25px;
+      border-radius: 30px;
+      background: #f0f0f0;
+      color: #333;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #dcdcdc;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 500px) {
+            .body{
+                padding: 30px;
             }
             .container {
                 padding: 20px;
+                width: 280px;
             }
 
             textarea {
                 height: 100px;
-                width: 240px;
             }
 
             button, .back-btn {
@@ -114,7 +169,7 @@
         <form method="POST">
             {% csrf_token %}
             <label for="text">Enter Your Message :</label>
-            <textarea name="text" id="text" placeholder="Type your message here..."></textarea>
+            <textarea name="text" id="text" placeholder="Type your message here..." required></textarea>
             <button type="submit">Check Spam</button>
         </form>
 
